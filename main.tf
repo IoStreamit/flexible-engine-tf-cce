@@ -26,20 +26,16 @@
     scale_down_cooldown_time = each.value.node_pool_cooldown_time
     priority                 = each.value.node_pool_priority
     type                     = each.value.node_pool_type
-
-    dynamic "root_volumes" {
-      for_each = var.root_volumes
-      content {
-        size       = root_volume.value.root_volume_size
-        volumetype = root_volume.value.root_volume_type
+    root_volumes = [
+      {
+        size              = 100
+        type              = "SAS"
       }
-    }
-
-    dynamic "data_volumes" {
-      for_each = var.datas_volumes
-      content {
-        size       = root_volume.value.data_volumes_size
-        volumetype = root_volume.value.data_volumes_type
+    ]
+    data_volumes = [
+      {
+        size       = 50
+        type       = "SAS"
       }
-    }
+    ]
   }

@@ -73,17 +73,3 @@ variable "node_pool_cce" {
         node_pool_type              = string
     }))
 }
-
-variable root_volumes {
-  type = list(object({
-    root_volume_size   = number,
-    root_volume_type   = string,
-  }))
-}
-
-variable data_volumes {
-  type = list(object({
-    data_volumes_size   = number,
-    data_volumes_type   = string,
-  }))
-}
