@@ -13,7 +13,7 @@
 
   resource "flexibleengine_cce_node_pool_v3" "node_pool_cce" {
     for_each = {for node_pool in var.node_pool_cce :node_pool.node_pool_cce => node_pool }
-    cluster_id               = each.value.cluster_id
+    cluster_id               = flexibleengine_vpc_v1.cce[0].id
     name                     = each.value.node_pool_name
     os                       = each.value.node_pool_os
     initial_node_count       = each.value.node_pool_node_count
