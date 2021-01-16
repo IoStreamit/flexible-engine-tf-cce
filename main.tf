@@ -12,33 +12,34 @@
   }
 
   resource "flexibleengine_cce_node_pool_v3" "node_pool_cce" {
-    cluster_id               = var.cluster_id
-    name                     = var.node_pool_name
-    os                       = var.node_pool_os
-    initial_node_count       = var.node_pool_node_count
-    flavor_id                = var.node_pool_node_flavor_id
-    availability_zone        = var.node_pool_node_az
-    key_pair                 = var.node_pool_node_keypair
-    scall_enable             = var.node_pool_scall_enable
-    min_node_count           = var.node_pool_min_node
-    max_node_count           = var.node_pool_max_node
-    scale_down_cooldown_time = var.node_pool_cooldown_time
-    priority                 = var.node_pool_priority
-    type                     = var.node_pool_type
+    for_each = {for node_pool in var.node_pool_cce :node_pool.node_pool_cce => node_pool }
+    cluster_id               = each.value.cluster_id
+    name                     = each.value.node_pool_name
+    os                       = each.value.node_pool_os
+    initial_node_count       = each.value.node_pool_node_count
+    flavor_id                = each.value.node_pool_node_flavor_id
+    availability_zone        = each.value.node_pool_node_az
+    key_pair                 = each.value.node_pool_node_keypair
+    scall_enable             = each.value.node_pool_scall_enable
+    min_node_count           = each.value.node_pool_min_node
+    max_node_count           = each.value.node_pool_max_node
+    scale_down_cooldown_time = each.value.node_pool_cooldown_time
+    priority                 = each.value.node_pool_priority
+    type                     = each.value.node_pool_type
 
-    dynamic "root_volume" {
+    dynamic "root_volumes" {
       for_each = var.root_volumes
       content {
-        size       = root_volume.value.size
-        volumetype = root_volume.value.type
+        size       = root_volume.value.root_volume_size
+        volumetype = root_volume.value.root_volume_type
       }
     }
 
     dynamic "data_volumes" {
       for_each = var.datas_volumes
       content {
-        size       = root_volume.value.size
-        volumetype = root_volume.value.type
+        size       = root_volume.value.data_volumes_size
+        volumetype = root_volume.value.data_volumes_type
       }
     }
   }

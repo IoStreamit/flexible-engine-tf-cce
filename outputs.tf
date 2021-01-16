@@ -1,9 +1,9 @@
-output "vpc_id" {
-    value = var.vpc_enabled && length(flexibleengine_vpc_v1.vpc) > 0 ? flexibleengine_vpc_v1.vpc[0].id : null
+output "cluster_id" {
+    value = var.cce_enabled && length(flexibleengine_cce_cluster_v3.cce) > 0 ? flexibleengine_cce_cluster_v3.cce[0].id : null
     description = "Vpc id" 
 }
 
-output "subnets_ids" {
-    value     = [for subnet in flexibleengine_vpc_subnet_v1.vpc_subnets : subnet.subnet_id]
-    description = "Subnet ids"
+output "node_pool_cce_ids" {
+    value     = [for node_pool in flexibleengine_cce_node_pool_v3.node_pool_cce : node_pool.node_ids]
+    description = "node pools ids"
 }

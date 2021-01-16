@@ -1,35 +1,89 @@
-variable "vpc_name" {
+variable "cce_name" {
     type = string
-    description = "name of virtual private cloud to be created"  
+    description = "name of cce cluster to be created"  
 }
 
-variable "vpc_enabled" {
+variable "cce_enabled" {
     type = bool
-    description = "enable creation to create vpc"
+    description = "enable creation to create cce cluster"
     default = true 
 }
 
-variable "vpc_region" {
+variable "cce_type" {
     type = string
-    description = "region of vpc containing the vpc"
+    description = "type of cce  to be crated"
 }
 
-variable "vpc_cidr" {
+variable "cce_version" {
     type = string
-    description = "the class less internet domaine routring block that is used by the vpc"
-    default = "192.168.0.0/24"
+    default = ""
+    description = "the class of cce cluster that is used by the cce"
 }
 
-variable "vpc_subnets" {
+variable "cce_idflavor" {
+    type = string
+    description = "the flavore type of cce to be created"
+    default = ""
+}
+
+variable "cce_idvpc" {
+    type = string
+    description = "the id of vpc that is will be used to create the cce cluster"
+    default = ""
+}
+
+variable "cee_idsubnet" {
+    type = string
+    description = "the id of the subnet that will be used to create the cluster"
+    default = ""
+}
+
+variable "cce_container_network_type" {
+    type = string
+    description = "the plugin àf network used on the cce cluster "
+    default = ""
+}
+
+variable "authentication_mode" {
+    type = string
+    description = "the auth mode used on the cce cluster"
+    default = ""
+}
+
+variable "cce_description" {
+    type = string
+    description = "description of the cce cluster usage"
+    default = ""
+}
+
+variable "node_pool_cce" {
     type = list(object({
-        subnet_name       = string,
-        subnet_cidr       = string,
-        subnet_gateway_ip = string,
-        subnet_availability_zone = string,
-        subnet_dhcp_enable = optional(bool),
-        subnet_primary_dns = optional(string),
-        subnet_secondary_dns = optional(string) 
+        cluster_id                  = string,
+        node_pool_name              = string,
+        node_pool_os                = string,
+        node_pool_node_count        = string,
+        node_pool_node_flavor_id    = string,
+        node_pool_node_az           = string,
+        node_pool_node_keypair      = string,
+        node_pool_scall_enable      = string,
+        node_pool_min_node          = number,
+        node_pool_max_node          = number,
+        node_pool_cooldown_time     = number,
+        node_pool_priority          = number,
+        node_pool_type              = string
     }))
-    description = "create the subnets of the vpc"
-    default = []
+}
+
+variable root_volumes {
+  type = list(object({
+    root_volume_size   = number,
+    root_volume_type   = string,
+  }))
+}
+
+variable data_volumes {
+  type = list(object({
+    data_volumes_size   = number,
+    data_volumes_type   = string,
+  }))
 }
