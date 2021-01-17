@@ -33,7 +33,7 @@
       }
     
     data_volumes {
-        size       = 50
+        size       = 100
         volumetype = "SAS"
     }
   }
