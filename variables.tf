@@ -58,7 +58,6 @@ variable "cce_description" {
 
 variable "node_pool_cce" {
     type = list(object({
-        node_pool_cluster_id        = string
         node_pool_name              = string,
         node_pool_os                = string,
         node_pool_node_count        = string,
