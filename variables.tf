@@ -44,7 +44,7 @@ variable "cce_container_network_type" {
     default = ""
 }
 
-variable "authentication_mode" {
+variable "cce_authentication_mode" {
     type = string
     description = "the auth mode used on the cce cluster"
     default = ""
@@ -58,6 +58,7 @@ variable "cce_description" {
 
 variable "node_pool_cce" {
     type = list(object({
+        node_pool_cluster_id        = string
         node_pool_name              = string,
         node_pool_os                = string,
         node_pool_node_count        = string,
