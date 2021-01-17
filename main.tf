@@ -29,11 +29,11 @@
     
     root_volume {
         size              = 100
-        type              = "SAS"
+        volumetype        = "SAS"
       }
     
-    data_volume {
+    data_volumes {
         size       = 50
-        type       = "SAS"
+        volumetype = "SAS"
     }
   }
