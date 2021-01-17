@@ -4,6 +4,6 @@ output "cluster_id" {
 }
 
 output "node_pool_cce_ids" {
-    value     = [for node_pool in flexibleengine_cce_node_pool_v3.node_pool_cce : node_pool.node_ids]
+    value     = [for node_pool in flexibleengine_cce_node_pool_v3.node_pool_cce : node_pool.id]
     description = "node pools ids"
 }
