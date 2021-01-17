@@ -12,7 +12,7 @@
   }
 
   resource "flexibleengine_cce_node_pool_v3" "node_pool_cce" {
-    for_each = {for node_pool in var.node_pool_cce :node_pool.node_pool_cce => node_pool }
+    for_each = {for node_pool in var.node_pool_cce : node_pool.node_pool_name => node_pool }
     cluster_id               = each.value.node_pool_cluster_id
     name                     = each.value.node_pool_name
     os                       = each.value.node_pool_os
