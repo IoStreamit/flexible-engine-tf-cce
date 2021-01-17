@@ -26,13 +26,13 @@
     scale_down_cooldown_time = each.value.node_pool_cooldown_time
     priority                 = each.value.node_pool_priority
     type                     = each.value.node_pool_type
-    root_volumes = [
+    root_volume = [
       {
         size              = 100
         type              = "SAS"
       }
     ]
-    data_volumes = [
+    data_volume = [
       {
         size       = 50
         type       = "SAS"
